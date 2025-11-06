@@ -15,4 +15,4 @@ The repository contains three main components:
   To use it:
   1. Go to *Overleaf -> New project -> Upload project* 
   2. Upload `ZipThesisTemplate.zip`
-  3. Start editing your thesis online.
+  3. Start editing your thesis.
