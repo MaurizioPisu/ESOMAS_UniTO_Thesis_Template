@@ -1,0 +1,26 @@
+\chapter{Code} \label{appendix:b}
+\begin{lstlisting}[language=Python, caption=Python Example]
+import numpy as np
+# Convert a flat index to multi-dimensional indices
+def ind2sub(shape, index):
+    subs = []
+    for dim in reversed(shape):
+        index, remainder = divmod(index, dim)
+        subs.insert(0, remainder)
+    return tuple(subs)
+\end{lstlisting}
+
+\begin{lstlisting}[language=C, caption=C Example]
+#include <stdio.h>
+void ind2sub(const int *shape, int ndims, int index, int *subs) {
+    for (int i = ndims - 1; i >= 0; i--) {
+        subs[i] = index % shape[i];
+        index /= shape[i];
+    }
+}
+int main() {
+    ...
+    return 0;
+}
+
+\end{lstlisting}

@@ -1,0 +1,14 @@
+\chapter{Algorithm}\label{appendix:a}
+
+\begin{algorithm}
+\caption{Convert Flat Index to Multi-Dimensional Subscripts (ind2sub)}
+\begin{algorithmic}[1]
+    \State \textbf{Input:} shape vector $\mathbf{s} = (s_1, s_2, \dots, s_n)$, flat index $idx$
+    \State \textbf{Output:} subscripts vector $\mathbf{sub} = (sub_1, sub_2, \dots, sub_n)$
+    \For{$i = n$ down to $1$}
+        \State $sub_i \gets idx \bmod s_i$
+        \State $idx \gets \lfloor idx / s_i \rfloor$
+    \EndFor
+    \State \textbf{return} $\mathbf{sub}$
+\end{algorithmic}
+\end{algorithm}

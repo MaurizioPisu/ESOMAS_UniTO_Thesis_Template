@@ -1,0 +1,99 @@
+\chapter{Title of Chapter 2}\label{chapter:title}
+
+This chapter demonstrates how to include mathematical formulae, theorems, tables, figures, and diagrams.
+
+\section{Mathematical Formulae}
+
+\begin{equation}
+    f(x) = \frac{\int_{0}^{\infty} 3x~dx - \sum_{i = 0}^{n} i^2}{\sigma \cdot \phi}
+    \label{eq:function}
+\end{equation}
+
+\begin{theorem}[Famous]
+Theorem statement goes here.
+\label{theorem:famous}
+\end{theorem}
+
+\begin{corollary}
+A corollary that follows from a previous theorem.
+\end{corollary}
+
+\begin{lemma}
+Lemma.
+\end{lemma}
+
+\begin{definition}
+A formal definition.
+\end{definition}
+
+\newpage
+
+\section{Figures, Tables, and Diagrams}
+
+This section shows how to include figures, tables, and TikZ diagrams.
+
+\subsection{Figures}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.2\linewidth]{frontpage/logo.png}
+    \caption{University of Turin Logo}
+    \label{fig:logo}
+\end{figure}
+
+\subsection{Tables}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{lcc}
+    \toprule
+     & Column 1 & Column 2 \\
+    \midrule
+    Row 1 & 10 & 20 \\
+    Row 2 & 30 & 40 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Example of a Basic 2×3 Table}
+    \label{tab:basic_table}
+\end{table}
+
+\newpage
+
+\subsection{Diagrams}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, node distance=2cm]
+        % Nodes
+        \node (S0) {$S_0$};
+        \node (Su) [above right of=S0] {$S_u$};
+        \node (Sd) [below right of=S0] {$S_d$};
+        \node (Suu) [above right of=Su] {$S_{uu}$};
+        \node (Sud) [below right of=Su] {$S_{ud}$};
+        \node (Sdd) [below right of=Sd] {$S_{dd}$};
+
+        % Arrows
+        \draw[->] (S0) -- (Su);
+        \draw[->] (S0) -- (Sd);
+        \draw[->] (Su) -- (Suu);
+        \draw[->] (Su) -- (Sud);
+        \draw[->] (Sd) -- (Sud);
+        \draw[->] (Sd) -- (Sdd);
+    \end{tikzpicture}
+    \caption{Basic Binomial Tree for Option Pricing}
+    \label{fig:binomial_tree}
+\end{figure}
+
+\subsection{References}
+The Journal of Finance–style references:
+\vspace{1em}
+\noindent
+\begin{itemize}
+    \item Figure~\ref{fig:logo}
+    \item Table~\ref{tab:basic_table}
+    \item Equation~\eqref{eq:function} (With brackets!)
+    \item Chapter~\ref{chapter:title}
+    \item Theorem~\ref{theorem:famous}
+    \item Appendix~\ref{appendix:a}
+    \item Citations: \parencite{hull2018}; \cite{mm1958}; \parencite{GrossmanHart1982}; \cite{AngBekaert1998}; \parencite{OngenaSmith1998}; \cite{wsj}.
+\end{itemize}

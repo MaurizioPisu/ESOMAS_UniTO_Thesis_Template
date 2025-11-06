@@ -1,0 +1,295 @@
+% --------------------------------------------------
+%  BASIC THESIS TEMPLATE
+%  Author: Maurizio Pisu (https://github.com/MaurizioPisu)
+%   
+%  Developed to meet the standard ESOMAS formatting requirements:
+%   - Front page compliant with UniTO guidelines
+%   - Font size: 12pt (as required by the Journal of Finance)
+%   - Font: Times New Roman (commonly used but not mandatory in JOF)
+%   - Doublespacing as required by ESOMAS
+%   - Citations and references formatted according to JOF standards
+%   - Bibliography style: Journal of Finance format
+%
+%  Last updated: October 2025
+% --------------------------------------------------
+
+
+
+% --------------------------------------------------
+%                       PREAMBLE
+% --------------------------------------------------
+% --------------------------------------------------
+% GENERAL SETTINGS
+% --------------------------------------------------
+\documentclass[12pt, oneside]{book}     % or twoside for printing. 12 is the JOF standard
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext, newtxmath}        
+\usepackage[english]{babel}             % set the language 
+\usepackage{csquotes}
+\usepackage[a4paper, top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage{setspace}
+\usepackage[colorlinks=true, 
+            linkcolor=blue, 
+            citecolor=blue, 
+            urlcolor=blue]{hyperref}    % for link and citations
+
+
+% --------------------------------------------------
+% CHAPTER SETTINGS
+% --------------------------------------------------
+\usepackage[toc,page]{appendix}
+\usepackage{fancyhdr} % to customize the header and footer
+
+\pagestyle{plain} 
+
+% --------------------------------------------------
+% MATH SETTINGS
+% --------------------------------------------------
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[chapter]
+
+
+% --------------------------------------------------
+% FIGURE, TABLE and DIAGRAM
+% --------------------------------------------------
+\usepackage{graphicx}       % for images
+\usepackage{tikz}           % for drawing 
+\usepackage{booktabs}       % for tables
+\usepackage[font=small, labelfont=bf]{caption}   % for customizing figure and table captions
+\usepackage{subcaption}     % for subcaption in subfigures
+
+
+% --------------------------------------------------
+% CODE and ALGORITHMS
+% --------------------------------------------------
+\usepackage{algorithm}	    % for algorithms environment
+\usepackage{algpseudocode}  % for pseudocode keyword
+\usepackage{listings}       % for code 
+\usepackage{xcolor}         % for coloring code
+
+% Additional info at https://www.overleaf.com/learn/latex/Code_listing
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor     = \color{backcolour},    % background color of the code block
+    commentstyle        = \color{codegreen},     % style for comments
+    keywordstyle        = \color{magenta},       % style for keywords
+    numberstyle         = \tiny\color{codegray}, % style for line numbers
+    stringstyle         = \color{codepurple},    % style for strings
+    basicstyle          = \ttfamily\footnotesize,% base font style and size
+    breakatwhitespace   = false,                 % don't break lines only at spaces
+    breaklines          = true,                  % automatically break long lines
+    captionpos          = b,                     % position of the caption (b = bottom)
+    keepspaces          = true,                  % preserve spaces in code
+    numbers             = left,                  % show line numbers on the left
+    numbersep           = 5pt,                   % space between line numbers and code
+    showspaces          = false,                 % don't show spaces as special characters
+    showstringspaces    = false,                 % don't show spaces in strings
+    showtabs            = false,                 % don't display tabs as special characters
+    tabsize             = 2,                     % number of spaces per tab
+}                                        
+\lstset{style=mystyle}      % choose the style
+
+
+% --------------------------------------------------
+% BIBLIOGRAPHY (Journal of Finance Style)
+% --------------------------------------------------
+\usepackage[style           = authoryear, 
+            backend         = biber, 
+            giveninits      = false,
+            uniquelist      = false, 
+            uniquename      = init,
+            maxcitenames    = 3,                % "et al" after the third author
+            dashed          = false,   
+            maxbibnames     = 999,
+            doi             = false,
+            isbn            = false,
+            url             = false]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Delete the following section if you are not interested in JOF style
+% __________________________________________________
+
+% Declare the format
+\AtBeginBibliography{\DeclareNameAlias{sortname}{family-given}} % Surname, Name
+\DeclareFieldFormat[article]{title}{#1}                       % no italics or quotes
+\DeclareFieldFormat[report]{title}{#1}
+\DeclareFieldFormat[newspaper]{title}{#1}
+\DeclareFieldFormat[incollection]{title}{#1}
+\DeclareFieldFormat{year}{#1}                                 % no (year)
+\DeclareFieldFormat{volume}{#1}                               % just the number
+\DeclareFieldFormat{pages}{#1}                                % just numbers
+\renewbibmacro{in:}{}                                         % removes "In:" before journal name
+
+\DeclareBibliographyDriver{article}{%
+  \printnames{author}%
+  \setunit{\addcomma\space}%
+  \printfield{year}%
+  \setunit{\addcomma\space}%
+  \printfield{title}%
+  \setunit{\addcomma\space}%
+  \printfield[emph]{journaltitle}%
+  \setunit{\addspace}%
+  \printfield{volume}%
+  \setunit{\addcomma\space}%
+  \printfield{pages}%
+  \finentry%
+}
+
+\DeclareBibliographyDriver{newspaper}{%
+    \printnames{author}%
+    \setunit{\addcomma\space}%
+    \printfield{year}%
+    \setunit{\addcomma\space}%
+    \printfield{title}%
+    \setunit{\addcomma\space}%
+    \printfield[emph]{journaltitle}%
+    \setunit{\addcomma\space}%
+    \printdate
+    \setunit{\addcomma\space}%
+    \printfield{pages}
+    \finentry%
+}
+
+\DeclareBibliographyAlias{techreport}{report}
+\DeclareBibliographyDriver{report}{%
+  \printnames{author}%
+  \setunit{\addcomma\space}%
+  \printfield{year}%
+  \setunit{\addcomma\space}%
+  \printfield{title}%
+  \setunit{\addcomma\space}%
+  \printfield{type}%
+  \setunit{\addspace}%
+  \printfield{number}%
+  \finentry%
+}
+
+\DeclareBibliographyDriver{unpublished}{%
+  \printnames{author}%
+  \setunit{\addcomma\space}%
+  \printfield{year}%
+  \setunit{\addcomma\space}%
+  \printfield[emph]{title}%
+  \setunit{\addcomma\space}%
+  \iffieldundef{note}
+    {\printtext{Unpublished manuscript}}%
+    {\printfield{note}}%
+  \finentry%
+}
+
+\DeclareBibliographyDriver{incollection}{%
+  \printnames{author}%
+  \setunit{\addcomma\space}%
+  \printfield{year}%
+  \setunit{\addcomma\space}%
+  \printfield{title}%
+  \setunit{\addcomma\space}%
+  \printtext{in }%
+  \printfield[emph]{booktitle}%
+  \setunit{\addcomma\space}%
+  \printlist{publisher}%
+  \setunit{\addcomma\space}%
+  \printfield{pages}%
+  \finentry%
+}
+
+\DeclareBibliographyDriver{book}{%
+    \printnames{author}%
+    \setunit{\addcomma\space}%
+    \printfield{year}%
+    \setunit{\addcomma\space}%
+    \printfield[emph]{title}%
+    \setunit{\addcomma\space}%
+    \printnames{editor}%
+    \setunit{\addcomma\space}%
+    \printfield{edition}%
+    \setunit{\addcomma\space}%
+    \printtext{(}%
+    \printlist{publisher}%
+    \iffieldundef{location}
+        {}
+        {\setunit{\addcomma\space}\printlist{location}}%
+    \printtext{)}%
+    \finentry%
+}
+
+% __________________________________________________
+% --------------------------------------------------
+
+
+
+
+% --------------------------------------------------
+%                       BODY
+% --------------------------------------------------
+\begin{document}
+
+% Frontpage: chose the frontpage you prefer
+\input{frontpage/frontespizio1}        % suggested
+%\input{frontpage/frontespizio2}
+
+% Blank page
+\clearpage
+\thispagestyle{empty}
+\null
+\clearpage
+
+% Set here to avoid double spacing in frontpage
+\doublespacing
+
+% Dedication
+% \input{frontmatter/dedication}
+% Acknowledgments
+% \input{frontmatter/acknowledgments}
+
+% Abstract
+\input{frontmatter/abstract}
+
+% FRONT MATTER ------------------------------
+\frontmatter
+
+% Tables of contents
+\hypersetup{linkcolor=black}     % black tables
+\tableofcontents
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\addcontentsline{toc}{chapter}{List of Code}
+\lstlistoflistings
+\hypersetup{linkcolor=blue} 
+
+
+% ------------------------------
+
+% MAIN MATTER ------------------------------
+\mainmatter
+% Chapters
+\input{chapters/introduction}
+\input{chapters/chapter1}
+\input{chapters/chapter2}
+% ------------------------------
+
+% BACKMATTER ------------------------------
+%\backmatter. Use only if no Appendix otherwise
+% Conclusions
+\input{chapters/conclusions}
+
+% Bibliography
+\newpage
+\printbibliography[title = {References}]
+
+% Appendix
+\appendix
+\input{appendix/appendixA}
+\input{appendix/appendixB}
+% ------------------------------
+
+\end{document}
